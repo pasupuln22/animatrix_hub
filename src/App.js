@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import AppRoutes from './Routes/Routes';
+import IconButton from '@mui/material/IconButton';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { useDarkMode } from './DarkModeContext';
+import './GlobalColor.css'
 
 function App() {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: isDarkMode || prefersDarkMode ? 'dark' : 'light',
+        },
+      }),
+    [isDarkMode, prefersDarkMode],
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppRoutes />
+      <IconButton onClick={toggleDarkMode} color="inherit">
+        {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+      </IconButton>
+    </ThemeProvider>
   );
 }
 
