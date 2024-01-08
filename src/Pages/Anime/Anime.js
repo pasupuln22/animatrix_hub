@@ -1,45 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Anime.css'; // Adjust the path accordingly
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 import ActionAreaCard from '../../Reusable/ActionAreaCard/ActionAreaCard';
 import Pagination from '../../Reusable/Pagination/Pagination';
+import './Anime.css'
 
 export default function Anime() {
-  const [animeData, setAnimeData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+    const [animeData, setAnimeData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [rateLimitError, setRateLimitError] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`https://api.jikan.moe/v4/anime?page=${currentPage}`);
-        setAnimeData(response.data.data);
-        setTotalPages(response.data.pagination.last_visible_page);
-      } catch (error) {
-        console.error('Error fetching anime data:', error);
-      }
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`https://api.jikan.moe/v4/anime?page=${currentPage}`);
+                setAnimeData(response.data.data);
+                setTotalPages(response.data.pagination.last_visible_page);
+                // Reset rate limit error state on successful request
+                setRateLimitError(false);
+            } catch (error) {
+                console.error('Error fetching anime data:', error);
+                if (error.response && error.response.status === 429) {
+                    // Set rate limit error state if status code is 429
+                    setRateLimitError(true);
+                }
+            }
+        };
+
+        fetchData();
+    }, [currentPage]);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
     };
 
-    fetchData();
-  }, [currentPage]);
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  return (
-    <div className="anime">
-      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
-      <div className="anime" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-        {animeData.map((anime) => (
-          <ActionAreaCard
-            key={anime.mal_id}
-            image={anime.images.jpg.image_url}
-            title={anime.title}
-            description={anime.synopsis}
-          />
-        ))}
-      </div>
-    </div>
-  );
+    return (
+        <div className="anime">
+            <Stack sx={{ width: '100%' }} spacing={2}>
+                {rateLimitError && (
+                    <Alert variant="filled" severity="error">
+                        You are being rate-limited. Please follow Rate Limiting guidelines:
+                        <a href="https://docs.api.jikan.moe/#section/Information/Rate-Limiting" target="_blank" rel="noopener noreferrer">
+                            Rate Limiting Guidelines
+                        </a>
+                    </Alert>
+                )}
+            </Stack>
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+            <div className="anime" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+                {animeData.map((anime) => (
+                    <ActionAreaCard
+                        key={anime.mal_id}
+                        image={anime.images.jpg.image_url}
+                        title={anime.title}
+                        description={anime.synopsis}
+                    />
+                ))}
+            </div>
+        </div>
+    );
 }
