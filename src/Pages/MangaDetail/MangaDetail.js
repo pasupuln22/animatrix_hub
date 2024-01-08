@@ -44,8 +44,6 @@ const MangaDetail = () => {
     popularity,
     members,
     favorites,
-    broadcast,
-    streaming,
   } = mangaData;
 
   return (
