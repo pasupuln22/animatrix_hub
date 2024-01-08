@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import './CardCarousel.css';
 
-const CardCarousel = ({ cardData, cardsToShow }) => {
+const CardCarousel = ({ cardData, cardsToShow,content }) => {
   const [startIndex, setStartIndex] = useState(0);
   const isSmallScreen = useMediaQuery({ query: '(max-width: 600px)' });
   const adjustedCardsToShow = isSmallScreen ? 1 : cardsToShow;
@@ -31,9 +31,9 @@ const CardCarousel = ({ cardData, cardsToShow }) => {
       <div className="card-container">
         {filteredCardData.slice(startIndex, startIndex + adjustedCardsToShow).map((card, index) => (
           <div key={index} className="card">
-            <img src={card.picture1} alt={`Card ${index + startIndex}`} className="card-image" />
+            <img src={card.images.jpg.image_url} alt={`Card ${index + startIndex}`} className="card-image" />
             <h5>
-              <Link to={`/review/${card.id}`} style={{ color: '#f1b452' }}>
+              <Link to={`/${content}/${card.mal_id}`} style={{ color: '#f1b452' }}>
                 {card.title}
               </Link>
             </h5>

@@ -3,7 +3,7 @@
     --secondary-color: #FFC107; /* Material Amber */
     --accent-color: #FF4081; /* Material Pink */
     --background-color: #f5f5f5; /* Light Grey Background */
-    --text-color: #333; /* Dark Text Color */
+    --text-color: #000000; /* Dark Text Color */
   }
   
   /* Apply colors to elements */

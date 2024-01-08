@@ -4,11 +4,16 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-export default function ActionAreaCard({ image, title, description }) {
+export default function ActionAreaCard ({ mal_id, image, title, genres, scores,page }) {
+  // Check if genres is defined before mapping
+  console.log(genres)
+  const genreNames = genres ? genres.map(genre => genre.name).join(', ') : '';
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+    <Card sx={{ width: 300}}>
+      <CardActionArea component={Link} to={`/${page}/${mal_id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
         <CardMedia
           component="img"
           height="140"
@@ -20,7 +25,10 @@ export default function ActionAreaCard({ image, title, description }) {
             {title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {description}
+            Genres: {genreNames}
+          </Typography>
+          <Typography variant="body2" color="text.primary">
+          <h3>Score: {scores}</h3>
           </Typography>
         </CardContent>
       </CardActionArea>

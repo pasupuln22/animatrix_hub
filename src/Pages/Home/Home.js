@@ -37,7 +37,6 @@ const Home = () => {
       }
     };
 
-    // Fetch data for top anime and top manga
     fetchTopAnime();
     fetchTopManga();
   }, []);
@@ -57,7 +56,7 @@ const Home = () => {
         <div className="section">
           <h1>Top 25 Anime Carousel</h1>
           <p>Explore the top 25 anime based on current popularity and ratings. Discover a diverse range of genres and captivating stories.</p>
-          <CardCarousel cardData={topAnime} cardsToShow={5} />
+          <CardCarousel cardData={topAnime} cardsToShow={5} content="anime"/>
           <p>
             <a href="/anime">Explore More Anime</a>
           </p>
@@ -66,7 +65,7 @@ const Home = () => {
         <div className="section">
           <h1>Top 25 Manga Carousel</h1>
           <p>Delve into the top 25 manga titles, ranging from action-packed adventures to thought-provoking narratives. Find your next captivating read.</p>
-          <CardCarousel cardData={topManga} cardsToShow={5} />
+          <CardCarousel cardData={topManga} cardsToShow={5} content="manga"/>
           <p>
             <a href="/manga">Explore More Manga</a>
           </p>

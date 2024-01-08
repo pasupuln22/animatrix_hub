@@ -53,9 +53,12 @@ export default function Anime() {
                 {animeData.map((anime) => (
                     <ActionAreaCard
                         key={anime.mal_id}
+                        page='anime'
+                        mal_id={anime.mal_id}
                         image={anime.images.jpg.image_url}
                         title={anime.title}
-                        description={anime.synopsis}
+                        genres={anime.genres}
+                        scores = {anime.score}
                     />
                 ))}
             </div>

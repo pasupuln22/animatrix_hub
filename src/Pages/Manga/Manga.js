@@ -54,9 +54,12 @@ export default function Manga() {
         {mangaData.map((manga) => (
           <ActionAreaCard
             key={manga.mal_id}
+            page='manga'
+            mal_id={manga.mal_id}
             image={manga.images.jpg.image_url}
             title={manga.title}
-            description={manga.synopsis}
+            genres={manga.genres}
+            scores = {manga.score}
           />
         ))}
       </div>
