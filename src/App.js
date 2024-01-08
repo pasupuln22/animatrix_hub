@@ -29,7 +29,7 @@ function App() {
         <CssBaseline />
         <ResponsiveAppBar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/*" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/anime" element={<Anime />} />
           <Route path="/manga" element={<Manga />} />

@@ -40,7 +40,7 @@ const Home = () => {
         <p>Explore the top 25 anime based on current popularity and ratings. Discover a diverse range of genres and captivating stories.</p>
         <CardCarousel cardData={topAnime} cardsToShow={5} />
         <p>
-          <a href="/anime-page">Explore More Anime</a>
+          <a href="/anime">Explore More Anime</a>
         </p>
       </div>
 
@@ -49,7 +49,7 @@ const Home = () => {
         <p>Delve into the top 25 manga titles, ranging from action-packed adventures to thought-provoking narratives. Find your next captivating read.</p>
         <CardCarousel cardData={topManga} cardsToShow={5} />
         <p>
-          <a href="/manga-page">Explore More Manga</a>
+          <a href="/manga">Explore More Manga</a>
         </p>
       </div>
     </div>
