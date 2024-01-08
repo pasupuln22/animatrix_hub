@@ -7,7 +7,7 @@ import './CardCarousel.css';
 const CardCarousel = ({ cardData, cardsToShow }) => {
   const [startIndex, setStartIndex] = useState(0);
   const isSmallScreen = useMediaQuery({ query: '(max-width: 600px)' });
-  const adjustedCardsToShow = isSmallScreen ? 2 : cardsToShow;
+  const adjustedCardsToShow = isSmallScreen ? 1 : cardsToShow;
 
   const goToPrevious = () => {
     if (startIndex > 0) {
