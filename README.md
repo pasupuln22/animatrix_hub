@@ -24,6 +24,30 @@ $npm start
 
 open your browser http://localhost:3000/
 
+## Description about this website:
+Animatrix: A Comprehensive Hub for Anime Enthusiasts
+
+At its core, Animatrix serves as an extensive database cataloging an extensive array of anime series and manga. The site boasts a vast repository of information on these media, providing details such as synopsis, genres, airing dates..etc. Users can easily navigate through the site's intuitive interface to discover new titles, explore Top Anime and Top Manga.
+
+users can see detailed synopisis,genre,ratings,scores and ranks offering insights into the plot, characters, animation quality, and overall enjoyment. This democratic approach empowers the community to collectively influence the perceived worth of various anime and manga, helping others make informed decisions about what to watch or read next.
+
+Beyond its role as a database, Animatrix also serves as a reliable source for Top anime and top manga, how many episodes and boardcasting time and screening platform with links. This dedication to providing timely and relevant content adds an extra layer of value to the platform, transforming it into a dynamic hub that caters to the evolving interests of its user base.
+
+Animatric website offer user friendly navigation ui and  dark mode.
+
+In conclusion, Animatrix stands as a multifaceted platform that caters to the diverse needs of anime enthusiasts. Animatrix offers a one-stop solution. Its comprehensive database, user-driven features.It an indispensable resource for anyone passionate about the world of anime and manga.
+
+### Animatrix website has following pages
+
+Home page contains Top anime and top manga 
+
+Anime page contains Search of anime and large database of anime
+
+Manga page contains Search of manga and large database of manga
+
+contact us page contains form and privacy policy
+
+Details page of anime and manga
 
 ## Main site i referred is from https://myanimelist.net/
 
