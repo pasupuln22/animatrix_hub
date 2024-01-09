@@ -1,4 +1,3 @@
-// PrivacyPolicy.js
 import React from 'react';
 
 const PrivacyPolicy = () => {

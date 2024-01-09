@@ -18,7 +18,7 @@ import {
   Link,
 } from '@mui/material';
 
-import PrivacyPolicy from './PrivacyPolicy'; // Import the PrivacyPolicy component
+import PrivacyPolicy from './PrivacyPolicy';
 
 const ContactUs = () => {
   const [openPrivacyPolicy, setOpenPrivacyPolicy] = useState(false);
@@ -106,7 +106,6 @@ const ContactUs = () => {
         <DialogTitle>Privacy Policy</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {/* Include the PrivacyPolicy component here */}
             <PrivacyPolicy />
           </DialogContentText>
         </DialogContent>

@@ -1,3 +1,4 @@
+//rerences from previous projects I only developed.I dont have reference link
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -33,7 +34,7 @@ const CardCarousel = ({ cardData, cardsToShow,content }) => {
           <div key={index} className="card">
             <img src={card.images.jpg.image_url} alt={`Card ${index + startIndex}`} className="card-image" />
             <h5>
-              <Link to={`/${content}/${card.mal_id}`} style={{ color: '#f1b452' }}>
+              <Link to={`/${content}/${card.mal_id}`} style={{ color: '#2196F3' }}>
                 {card.title}
               </Link>
             </h5>

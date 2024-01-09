@@ -7,8 +7,6 @@ import { CardActionArea } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export default function ActionAreaCard ({ mal_id, image, title, genres, scores,page }) {
-  // Check if genres is defined before mapping
-  console.log(genres)
   const genreNames = genres ? genres.map(genre => genre.name).join(', ') : '';
 
   return (
