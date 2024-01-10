@@ -7,6 +7,7 @@ import Pagination from '@mui/material/Pagination';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import './Manga.css';
+import { URL } from '../../Utils/Url';
 
 export default function Manga() {
   const [mangaData, setMangaData] = useState([]);
@@ -18,7 +19,7 @@ export default function Manga() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.jikan.moe/v4/manga?page=${currentPage}`);
+        const response = await axios.get(`${URL}/manga?page=${currentPage}`);
         setMangaData(response.data.data);
         setTotalPages(response.data.pagination.last_visible_page);
         // Reset rate limit error state on successful request
@@ -41,7 +42,7 @@ export default function Manga() {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`https://api.jikan.moe/v4/manga?q=${searchQuery}`);
+      const response = await axios.get(`${URL}/manga?q=${searchQuery}`);
       setMangaData(response.data.data);
       setTotalPages(response.data.pagination.last_visible_page);
       // Reset rate limit error state on successful request

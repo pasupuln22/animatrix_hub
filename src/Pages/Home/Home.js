@@ -5,6 +5,7 @@ import CardCarousel from '../../Reusable/CardCarousel/CardCarousel';
 import Stack from '@mui/material/Stack';
 import Alert from '@mui/material/Alert';
 import './Home.css';
+import { URL } from '../../Utils/Url';
 
 const Home = () => {
   const [topAnime, setTopAnime] = useState([]);
@@ -14,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const fetchTopAnime = async () => {
       try {
-        const response = await axios.get('https://api.jikan.moe/v4/top/anime');
+        const response = await axios.get(`${URL}/top/anime`);
         setTopAnime(response.data.data);
       } catch (error) {
         console.error('Error fetching top anime:', error);
@@ -27,7 +28,7 @@ const Home = () => {
 
     const fetchTopManga = async () => {
       try {
-        const response = await axios.get('https://api.jikan.moe/v4/top/manga');
+        const response = await axios.get(`${URL}/top/manga`);
         setTopManga(response.data.data);
       } catch (error) {
         console.error('Error fetching top manga:', error);

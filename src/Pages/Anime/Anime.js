@@ -7,6 +7,7 @@ import Pagination from '@mui/material/Pagination';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import './Anime.css';
+import { URL } from '../../Utils/Url';
 
 export default function Anime() {
     const [animeData, setAnimeData] = useState([]);
@@ -18,7 +19,7 @@ export default function Anime() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://api.jikan.moe/v4/anime?page=${currentPage}`);
+                const response = await axios.get(`${URL}/anime?page=${currentPage}`);
                 setAnimeData(response.data.data);
                 setTotalPages(response.data.pagination.last_visible_page);
                 // Reset rate limit error state on successful request
@@ -41,7 +42,7 @@ export default function Anime() {
 
     const handleSearch = async () => {
         try {
-            const response = await axios.get(`https://api.jikan.moe/v4/anime?q=${searchQuery}`);
+            const response = await axios.get(`${URL}/anime?q=${searchQuery}`);
             setAnimeData(response.data.data);
             setTotalPages(response.data.pagination.last_visible_page);
             // Reset rate limit error state on successful request

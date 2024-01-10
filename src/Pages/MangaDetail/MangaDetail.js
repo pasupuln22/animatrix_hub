@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './MangaDetail.css';
+import { URL } from '../../Utils/Url';
 
 const MangaDetail = () => {
   const [mangaData, setMangaData] = useState(null);
@@ -10,7 +11,7 @@ const MangaDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.jikan.moe/v4/manga/${id}/full`);
+        const response = await axios.get(`${URL}/manga/${id}/full`);
         setMangaData(response.data.data);
       } catch (error) {
         console.error('Error fetching manga data:', error);

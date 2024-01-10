@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './AnimeDetail.css';
+import { URL } from '../../Utils/Url';
 
 const AnimeDetail = () => {
   const [animeData, setAnimeData] = useState(null);
@@ -10,7 +11,7 @@ const AnimeDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.jikan.moe/v4/anime/${id}/full`);
+        const response = await axios.get(`${URL}/anime/${id}/full`);
         setAnimeData(response.data.data);
       } catch (error) {
         console.error('Error fetching anime data:', error);
