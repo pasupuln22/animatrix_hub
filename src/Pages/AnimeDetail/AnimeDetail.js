@@ -96,6 +96,7 @@ const AnimeDetail = () => {
             </a>
           ))}
         </h3>
+        <h6 style={{color:'red'}}>* May be unavailable in your region.</h6>
     </div>
     </div>
     </>

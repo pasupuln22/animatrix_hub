@@ -3,7 +3,9 @@ import axios from 'axios';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import ActionAreaCard from '../../Reusable/ActionAreaCard/ActionAreaCard';
-import Pagination from '../../Reusable/Pagination/Pagination';
+import Pagination from '@mui/material/Pagination';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import './Manga.css';
 
 export default function Manga() {
@@ -11,6 +13,7 @@ export default function Manga() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [rateLimitError, setRateLimitError] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,12 +35,37 @@ export default function Manga() {
     fetchData();
   }, [currentPage]);
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (event, page) => {
     setCurrentPage(page);
   };
 
-  return (
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`https://api.jikan.moe/v4/manga?q=${searchQuery}`);
+      setMangaData(response.data.data);
+      setTotalPages(response.data.pagination.last_visible_page);
+      // Reset rate limit error state on successful request
+      setRateLimitError(false);
+    } catch (error) {
+      console.error('Error fetching manga data:', error);
+      if (error.response && error.response.status === 429) {
+        // Set rate limit error state if status code is 429
+        setRateLimitError(true);
+      }
+    }
+  };
 
+  const handleSearchInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setCurrentPage(1);
+    handleSearch();
+  };
+
+  return (
     <div className="manga">
       <Stack sx={{ width: '100%' }} spacing={2}>
         {rateLimitError && (
@@ -49,21 +77,37 @@ export default function Manga() {
           </Alert>
         )}
       </Stack>
-      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+      <form onSubmit={handleSearchSubmit} style={{ marginBottom: '20px' }}>
+        <TextField
+          label="Search..."
+          variant="outlined"
+          value={searchQuery}
+          onChange={handleSearchInputChange}
+        />
+        <Button type="submit" variant="contained" style={{ marginLeft: '10px', marginTop: '7px' }}>
+          Search
+        </Button>
+      </form>
       <div className="manga" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
         {mangaData.map((manga) => (
           <ActionAreaCard
             key={manga.mal_id}
-            page='manga'
+            page="manga"
             mal_id={manga.mal_id}
             image={manga.images.jpg.image_url}
             title={manga.title}
             genres={manga.genres}
-            scores = {manga.score}
+            scores={manga.score}
           />
         ))}
       </div>
+      <Pagination
+        count={totalPages}
+        page={currentPage}
+        onChange={handlePageChange}
+        variant="outlined"
+        shape="rounded"
+      />
     </div>
-
   );
 }

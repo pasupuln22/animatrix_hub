@@ -17,6 +17,7 @@ import {
   DialogActions,
   Link,
 } from '@mui/material';
+import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
 
 import PrivacyPolicy from './PrivacyPolicy';
 
@@ -101,7 +102,12 @@ const ContactUs = () => {
           </form>
         </CardContent>
       </Card>
-
+      <Box mt={3} display="flex" justifyContent="center">
+        <Facebook color="primary" fontSize="large" style={{ marginRight: '16px' }} />
+        <Twitter color="primary" fontSize="large" style={{ marginRight: '16px' }} />
+        <Instagram color="primary" fontSize="large" style={{ marginRight: '16px' }} />
+        <LinkedIn color="primary" fontSize="large" />
+      </Box>
       <Dialog open={openPrivacyPolicy} onClose={handlePrivacyPolicyClose}>
         <DialogTitle>Privacy Policy</DialogTitle>
         <DialogContent>
