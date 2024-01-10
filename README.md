@@ -49,13 +49,13 @@ contact us page contains form and privacy policy
 
 Details page of anime and manga
 
-## Main site i referred is from https://myanimelist.net/
+## Main site I referred from https://myanimelist.net/
 
-I took that website as reference and build this website using Material ui
+I took MyAnimelist website as reference and build this website using Material ui.
 
-This is the starting of the project in future I will implement everything
+This is the starting of the project in future I will implement more like Forums,News,reviews,login and registration etc.
 
-Present now I can access 3 api's for second
+Present now I can access 3 api's per second.
 
 ### sometimes website show toast warning message like this 
 ### "You are being rate-limited. Please follow Rate Limiting guidelines:Rate Limiting Guidelines "
